@@ -1,0 +1,264 @@
+  body {
+      margin: 0;
+      overflow: hidden;
+      background: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* Full screen */
+      text-align: center;
+    }
+.square {
+    width: 90vw;
+    max-width: 400px;
+    height: 90vw;
+    max-height: 400px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Rotating inner circle for visual clarity */
+.rotating-inner {
+    position: absolute;
+    top: 35%;
+    left: 35%;
+    width: 30%;
+    height: 30%;
+    background: rgba(255,255,255,0.15);
+    border: 2px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 2px rgba(255,255,255,0.3);
+    z-index: 2;
+    pointer-events: none;
+}
+/* ...existing code... */
+.square span:nth-child(2) {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    height: 80%;
+    width: 80%;
+    background: transparent;
+    border: 6px solid rgba(200,200,200,0.5);
+    box-shadow: 0 0 30px 8px rgba(200,200,200,0.2);
+    border-radius: 50% 60%;
+    transition: 0.5s;
+    animation: animate2 4s linear infinite;
+}
+.square span:nth-child(3) {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    height: 60%;
+    width: 60%;
+    background: transparent;
+    border: 4px solid rgba(100,100,100,0.4);
+    box-shadow: 0 0 20px 5px rgba(100,100,100,0.2);
+    border-radius: 50% 62%;
+    transition: 0.5s;
+
+    animation: animate3 8s linear infinite;
+}
+
+@keyframes animate1 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+@keyframes animate2 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+@keyframes animate3 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+  h2 {
+      font-size: 2.5rem;
+      animation: glow 2s infinite alternate;
+    }
+@keyframes glow {
+      from {
+        color: #5e6363;
+        text-shadow: 0 0 5px #768585, 0 0 10px #00ffff;
+      }
+      to {
+        color: #ffffff;
+        text-shadow: 0 0 20px #8a9292, 0 0 40px #00ffff;
+      }
+    }
+
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  background-color: #000; /* Optional: dark background */
+}
+
+   main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #animatedText {
+      font-size: 1.5rem;
+      margin-bottom: 2%;
+      color: white;
+      word-wrap: break-word; /* Wrap text if too long */
+      max-width: 90%; /* Keep text inside screen */
+    }
+
+    /* ✅ Responsive scaling */
+    @media (max-width: 768px) {
+      #animatedText {
+        font-size: 1.2rem;
+      }
+      .square {
+        transform: scale(0.8);
+      }
+    }
+
+    @media (max-width: 480px) {
+      #animatedText {
+        font-size: 1rem;
+      }
+      .square {
+        transform: scale(0.6);
+      }
+    }
+
+/* ==========================
+   Input & Button Styling
+   ========================== */
+
+/* Container for text + mic button */
+#TextInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10%;
+  flex-wrap: wrap; /* allow wrapping on small screens */
+}
+
+/* Input box */
+#chatbox {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 18px;
+  border: 2px solid #707a7a;
+  border-radius: 30px;
+  outline: none;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  font-size: 16px;
+  text-align: center;
+  transition: 0.3s;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+}
+
+/* Input focus glow */
+#chatbox:focus {
+  border-color: #00e6e6;
+  box-shadow: 0 0 15px #00ffff, 0 0 25px #00e6e6;
+}
+
+/* Mic button */
+#micbtn , #textbtn , #settingbtn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: #9da3a3;
+  color: #000;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+/* Hover effect */
+#micbtn:hover {
+  background: #00cccc;
+  box-shadow: 0 0 20px #1c8585, 0 0 40px #00cccc;
+}
+#textbtn:hover {
+  background: #00cccc;
+  box-shadow: 0 0 20px #00ffff, 0 0 40px #00cccc;
+}
+#settingbtn:hover {
+  background: #00cccc;
+  box-shadow: 0 0 20px #00ffff, 0 0 40px #00cccc;
+}
+
+/* Optional glowing animation */
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 10px #00ffff, 0 0 20px #00cccc;
+  }
+  50% {
+    box-shadow: 0 0 20px #00ffff, 0 0 40px #00cccc;
+  }
+  100% {
+    box-shadow: 0 0 10px #00ffff, 0 0 20px #00cccc;
+  }
+}
+
+#micbtn.glow-on-hover {
+  animation: pulseGlow 2s infinite;
+}
+#textbtn.glow-on-hover {
+  animation: pulseGlow 2s infinite;
+}
+#settingbtn.glow-on-hover {
+  animation: pulseGlow 2s infinite;
+}
+
+/* ==========================
+   Responsive Breakpoints
+   ========================== */
+
+/* Tablets */
+@media (max-width: 768px) {
+  #chatbox {
+    max-width: 300px;
+    font-size: 15px;
+    padding: 10px 16px;
+  }
+
+  #micbtn {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  #chatbox {
+    max-width: 250px;
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+
+  #micbtn {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  #TextInput {
+    gap: 8px;
+  }
+}
