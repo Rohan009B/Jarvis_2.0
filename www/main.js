@@ -120,3 +120,19 @@ function DisplayMessage(message) {
     }, 3000);
   }
 }
+
+document.addEventListener('keyup', function (e) {
+  if (e.key === 'j' && e.altKey) {
+    const ovel = document.getElementById("mainContainer");
+    const siriWaveElement = document.getElementById("siriWave");
+    const micSound = document.getElementById("micSound");
+
+    eel.allCommands();
+    if (ovel) ovel.hidden = true;
+    if (siriWaveElement) siriWaveElement.hidden = false;
+    if (micSound) {
+      micSound.currentTime = 0;
+      micSound.play();
+    }
+  }
+});
