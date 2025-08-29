@@ -27,15 +27,27 @@ cursor = con.cursor()
 
 #impoerting The CSV file Here
 
-desired_colomns_indices = [0 ,20]
+# desired_colomns_indices = [0 ,20]
 
-#Read Data From THe CSV FILE
-with open('contacts.csv','r',encoding='utf-8') as csvfile:
-    csvrender = csv.render(s=csvfile)
-    for row in csvrender:
-        selected_data = [row[i] for i in desired_colomns_indices]
-        cursor.execute(''' INSERT INTO contacts ('id', 'name', 'mobile_no') VALUES (null, ?, ?); ''', tuple(selected_data))
+# #Read Data From THe CSV FILE
+# with open('contacts.csv','r',encoding='utf-8') as csvfile:
+#     csvrender = csv.reader(csvfile)
+#     for row in csvrender:
+#         selected_data = [row[i] for i in desired_colomns_indices]
+#         cursor.execute(''' INSERT INTO contacts ('id', 'name', 'mobile_no') VALUES (null, ?, ?); ''', tuple(selected_data))
 
-#commiit Changes and CLose COnnection
-con.commit()
-con.close()
+# #commiit Changes and CLose COnnection
+# con.commit()
+# con.close()
+
+## Execute the Search Contect Single Query
+
+# query = "Rohit"
+# query = query.strip().lower()
+
+# cursor.execute(
+#     "SELECT mobile_no FROM contacts WHERE LOWER(name) LIKE ? OR LOWER(name) LIKE ?",
+#     ('%' + query.lower() + '%', '%' + query.lower() + '%')
+# )
+# results = cursor.fetchall()
+# print(results[0][0])

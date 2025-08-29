@@ -50,9 +50,24 @@ def allCommands():
         if  "open" in query:
             from engine.features import openCommand
             openCommand(query)
-        elif "on youtube":
+        elif "on youtube" in query:
             from engine.features import playYouTube
             playYouTube(query)
+        elif "send message" in query or "phone call" in query or "vedio call" in query:
+            from engine.features import findContacts, whatsApp
+            flag = ""
+            contacts_no, name = findContacts(query)
+            if(contacts_no != 0):
+                if "send message" in query:
+                    flag = 'message'
+                    speck("what message to send")
+                    query = TakeCommand()
+                elif "phone call" in query:
+                    flag = 'call'
+                else:
+                    flag = 'vedio call'
+                whatsApp(contacts_no, query, flag, name)
+
         else:
             print("No open command recognized")
     except:
