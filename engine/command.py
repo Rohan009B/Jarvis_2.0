@@ -42,36 +42,47 @@ def TakeCommand():
         return "None"
 
 @eel.expose
-def allCommands():
+def allCommands(message=None):
     try:
         print("allCommands triggered")
-        query = TakeCommand()
-        print(query)
-        if  "open" in query:
+
+        if message is None or message == "":
+            # Voice mode
+            query = TakeCommand()
+        else:
+            # Text mode (from chatbox)
+            query = message.lower().strip()
+
+        print(f"Query received: {query}")
+
+        if "open" in query:
             from engine.features import openCommand
             openCommand(query)
+
         elif "on youtube" in query:
             from engine.features import playYouTube
             playYouTube(query)
+
         elif "send message" in query or "phone call" in query or "vedio call" in query:
             from engine.features import findContacts, whatsApp
             flag = ""
             contacts_no, name = findContacts(query)
-            if(contacts_no != 0):
+            if contacts_no != 0:
                 if "send message" in query:
                     flag = 'message'
-                    speck("what message to send")
-                    query = TakeCommand()
+                    speck("What message do you want to send?")
+                    message_text = TakeCommand() if message is None else query
+                    whatsApp(contacts_no, message_text, flag, name)
                 elif "phone call" in query:
                     flag = 'call'
+                    whatsApp(contacts_no, "", flag, name)
                 else:
                     flag = 'vedio call'
-                whatsApp(contacts_no, query, flag, name)
-
+                    whatsApp(contacts_no, "", flag, name)
         else:
-            print("No open command recognized")
-    except:
-        print("Error")
+            print("No command recognized")
+
+    except Exception as e:
+        print("Error:", e)
 
     eel.ShowHood()
-   
