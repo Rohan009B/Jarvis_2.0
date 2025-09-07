@@ -269,3 +269,31 @@
     gap: 8px;
   }
 }
+
+#staticBackdrop{
+  background-color: #191919;
+}
+
+.receiver_message{
+  padding: 8px;
+  border: 2px solid cyan;
+  border-radius: 0px 15px 15px 20px;
+  width: auto;
+  color: white;
+  background-color: #0dcaf014;
+}
+.sender_message{
+  padding: 8px;
+  border: 1px solid #666666;
+  border-radius: 15px 15px 0px 20px;
+  width: auto;
+  color: rgb(78, 243, 255);
+  background-color: #666666;
+}
+.width-size{
+  max-width: 80%;
+  width: auto;
+}
+.offcanvas-header .btn-close {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(180deg); /* makes it white */
+}

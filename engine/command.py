@@ -10,6 +10,7 @@ engine = pyttsx3.init()
 def speck(text):
     engine.setProperty('voice', engine.getProperty('voices')[0].id)
     engine.say(text)
+    eel. receiverMessage(text)
     engine.runAndWait()
     
 @eel.expose
@@ -49,9 +50,11 @@ def allCommands(message=None):
         if message is None or message == "":
             # Voice mode
             query = TakeCommand()
+            eel.senderText(query)
         else:
             # Text mode (from chatbox)
             query = message.lower().strip()
+            eel.senderText(query)
 
         print(f"Query received: {query}")
 

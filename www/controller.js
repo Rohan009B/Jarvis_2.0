@@ -53,3 +53,28 @@ function ShowHood() {
 }
 
 eel.expose(ShowHood);
+
+
+eel.expose(senderText)
+function senderText(message){
+  var chatbox = document.getElementById("chat-canvas-body");
+  if (message.trim() != ""){
+    chatbox.innerHTML += `<div class="row justify-contect-end mb-4">
+    <div class="width-size">
+    <div class="sender_message">${message}</div></div>`;
+
+    chatbox.scrollTop = chatbox.scrollHeight;
+  }
+}
+
+eel.expose(receiverMessage)
+function receiverMessage(message){
+  var chatbox = document.getElementById("chat-canvas-body");
+  if (message.trim() != ""){
+    chatbox.innerHTML += `<div class="row justify-contect-end mb-4">
+    <div class="width-size">
+    <div class="receiver_message">${message}</div></div>`;
+
+    chatbox.scrollTop = chatbox.scrollHeight;
+  }
+}
