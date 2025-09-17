@@ -27,4 +27,4 @@ if __name__ == '__main__':
         p2.terminate()
         p2.join()
 
-    print("Sytem Stop")
+    print("System Stop")
