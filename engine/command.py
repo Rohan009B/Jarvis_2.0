@@ -5,6 +5,7 @@ import time
 
 
 engine = pyttsx3.init()
+engine = pyttsx3.init(driverName='sapi5')
 
 @eel.expose
 def speck(text):
@@ -50,10 +51,19 @@ def allCommands(message=None):
         if message is None or message == "":
             # Voice mode
             query = TakeCommand()
+
+            # ✅ Ensure query is a string
+            if isinstance(query, list):
+                query = " ".join(map(str, query))
+
             eel.senderText(query)
+
         else:
             # Text mode (from chatbox)
-            query = message.lower().strip()
+            query = message
+            if isinstance(query, list):   # ✅ safety
+                query = " ".join(map(str, query))
+            query = query.lower().strip()
             eel.senderText(query)
 
         print(f"Query received: {query}")
@@ -75,6 +85,8 @@ def allCommands(message=None):
                     flag = 'message'
                     speck("What message do you want to send?")
                     message_text = TakeCommand() if message is None else query
+                    if isinstance(message_text, list):   # ✅ flatten here too
+                        message_text = " ".join(map(str, message_text))
                     whatsApp(contacts_no, message_text, flag, name)
                 elif "phone call" in query:
                     flag = 'call'
@@ -82,10 +94,13 @@ def allCommands(message=None):
                 else:
                     flag = 'vedio call'
                     whatsApp(contacts_no, "", flag, name)
+
         else:
-            print("No command recognized")
+            from engine.features import chatBot
+            response = chatBot(query)   # ✅ now always string
+            eel.senderText(response)
 
     except Exception as e:
-        print("Error:", e)
+        print(f"Error: {e}")
 
     eel.ShowHood()

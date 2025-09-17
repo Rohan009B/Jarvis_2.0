@@ -20,6 +20,7 @@ import pywhatkit as kit
 import _sqlite3
 
 from engine.helper import extract_yt_term, remove_words
+from hugchat import hugchat
 
 # ✅ Connect to SQLite database
 con = _sqlite3.connect("jarvis2_0.db")
@@ -180,4 +181,33 @@ def whatsApp(mobile_no, message, flag, name):
 
     speck(jarvis_message)
 
-     
+#chat Bot
+# Chat Bot
+def chatBot(query):
+    try:
+        # ✅ Always normalize query
+        if query is None:
+            query = ""
+        elif isinstance(query, list):
+            query = " ".join(map(str, query))
+        else:
+            query = str(query)
+
+        user_input = query.lower().strip()
+
+        # ✅ Initialize HugChat
+        bot = hugchat.ChatBot(cookie_path="engine\\cookies.json")
+        conv_id = bot.new_conversation()
+        bot.change_conversation(conv_id)
+
+        # ✅ Get response
+        response = bot.chat(user_input)
+
+        print(f"ChatBot Response: {response}")
+        return response
+
+    except Exception as e:
+        print(f"ChatBot Error: {e}")
+        return "Sorry, I couldn't process that request."
+
+    
